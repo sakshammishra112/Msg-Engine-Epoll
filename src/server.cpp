@@ -14,16 +14,12 @@
 constexpr int PORT = 9000;
 constexpr int MAX_EVENTS = 1024;
 
-/* ---------- globals definition ---------- */
-
 uint64_t NEXT_MSG_ID = 1;
 
 std::unordered_map<uint64_t, PendingMessage> pending;
 std::unordered_map<int, std::unordered_set<uint64_t>> pending_by_user;
 std::unordered_map<int, int> user_to_fd;
 std::unordered_map<int, Connection> connections;
-
-/* ---------- functions copied as-is ---------- */
 
 void cleanup_client(int epfd, int fd) {
     auto it = connections.find(fd);
